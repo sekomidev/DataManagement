@@ -9,6 +9,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testing", "testing", "{5C9F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataManagementTesting", "testing\DataManagementTesting\DataManagementTesting.csproj", "{50B0AD3E-2940-4DE9-BE94-25BEA243B3C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserDataSavingExample", "examples\UserDataSavingExample\UserDataSavingExample.csproj", "{F6A0B4C9-EDA0-4B17-BE5D-95A8146C75ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{50B0AD3E-2940-4DE9-BE94-25BEA243B3C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50B0AD3E-2940-4DE9-BE94-25BEA243B3C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50B0AD3E-2940-4DE9-BE94-25BEA243B3C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A0B4C9-EDA0-4B17-BE5D-95A8146C75ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A0B4C9-EDA0-4B17-BE5D-95A8146C75ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A0B4C9-EDA0-4B17-BE5D-95A8146C75ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A0B4C9-EDA0-4B17-BE5D-95A8146C75ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
