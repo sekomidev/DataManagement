@@ -1,4 +1,5 @@
 ﻿using System.Xml.Serialization;
+using System.Diagnostics;
 namespace DataManagement
 {
 	public static class DataManager
@@ -18,9 +19,9 @@ namespace DataManagement
 				writer = new StreamWriter(filePath, append);
 				new XmlSerializer(typeof(T)).Serialize(writer, objectToSave);
 			}
-			catch(Exception e)
+			catch(InvalidOperationException e)
 			{
-				// TODO: add logic for dealing with exceptions
+				Trace.TraceError("Only instances of public classes can be saved!");
 				throw e;
 			}
 			finally
@@ -29,6 +30,28 @@ namespace DataManagement
 				{
 					writer.Close();
 					writer.Dispose();
+				}
+			}
+		}
+		public static T Load<T>(string filePath)
+		{
+			TextReader? reader = null;
+			try
+			{
+				reader = new StreamReader(filePath);
+				return (T)new XmlSerializer(typeof(T)).Deserialize(reader);
+			}
+			catch(FileNotFoundException)
+			{
+				Trace.TraceWarning($"File \"{filePath}\" not found; returning an empty object");
+				return default;
+			}
+			finally
+			{
+				if (reader is not null)
+				{
+					reader.Close();
+					reader.Dispose();
 				}
 			}
 		}
