@@ -5,12 +5,17 @@ namespace DataManagement
 	public static class DataManager
 	{
 		/// <summary>
-		/// 
+		/// Saves the given object instance to an XML file.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="filePath"></param>
-		/// <param name="objectToSave"></param>
-		/// <param name="append"></param>
+		/// <para>
+		/// Only public fields and properties will be written to the file.
+		/// If you don't wish to save certain fields/properties, add the [XmlIgnore] attribute to them.
+		/// Object type must have a parameterless constructor.
+		/// </para>
+		/// <typeparam name="T">The type of object to save.</typeparam>
+		/// <param name="filePath">The file path to save the object to.</param>
+		/// <param name="objectToSave">The object instance to save.</param>
+		/// <param name="append">Whether or not to append contents to the file.</param>
 		public static void Save<T>(string filePath, T objectToSave, bool append = false)
 		{
 			TextWriter? writer = null;
@@ -39,9 +44,9 @@ namespace DataManagement
 		/// Object type must have a parameterless constructor.
 		/// </para>
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="filePath"></param>
-		/// <returns></returns>
+		/// <typeparam name="T">The type of object to load.</typeparam>
+		/// <param name="filePath">The file path to load the object instance from.</param>
+		/// <returns>Returns a new instance of the object read from the XML file.</returns>
 		public static T Load<T>(string filePath)
 			where T : new()
 		{
