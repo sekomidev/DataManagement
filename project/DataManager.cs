@@ -1,9 +1,11 @@
 ﻿using System.Xml.Serialization;
 using System.Diagnostics;
+using log4net;
 namespace DataManagement
 {
 	public static class DataManager
 	{
+		private static readonly ILog log = LogManager.GetLogger("debugLog");
 		/// <summary>
 		/// Saves the given object instance to an XML file.
 		/// <para>
@@ -26,7 +28,7 @@ namespace DataManagement
 			}
 			catch(InvalidOperationException e)
 			{
-				Trace.TraceError("Only instances of public classes can be saved!");
+				log.Error("Only instances of public classes can be saved!");
 				throw e;
 			}
 			finally
@@ -85,7 +87,7 @@ namespace DataManagement
 			}
 			catch(FileNotFoundException)
 			{
-				Trace.TraceWarning($"File \"{filePath}\" not found; returning an empty object");
+				log.Warn($"File \"{filePath}\" not found; returning an empty object");
 				return new T();
 			}
 			finally
@@ -117,7 +119,7 @@ namespace DataManagement
 			}
 			catch (FileNotFoundException)
 			{
-				Trace.TraceWarning($"File \"{filePath}\" not found; returning an empty array");
+				log.Warn($"File \"{filePath}\" not found; returning an empty array");
 				return Array.Empty<T>();
 			}
 			finally
