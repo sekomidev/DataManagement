@@ -33,7 +33,17 @@ namespace DataManagement
 				}
 			}
 		}
+		/// <summary>
+		/// Loads an object instance from an XML file.
+		/// <para>
+		/// Object type must have a parameterless constructor.
+		/// </para>
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="filePath"></param>
+		/// <returns></returns>
 		public static T Load<T>(string filePath)
+			where T : new()
 		{
 			TextReader? reader = null;
 			try
@@ -44,7 +54,7 @@ namespace DataManagement
 			catch(FileNotFoundException)
 			{
 				Trace.TraceWarning($"File \"{filePath}\" not found; returning an empty object");
-				return default;
+				return new T();
 			}
 			finally
 			{
