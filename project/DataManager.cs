@@ -38,6 +38,14 @@ namespace DataManagement
 				}
 			}
 		}
+		/// <summary>
+		/// Saves the given array of object instances to an XML file.
+		/// </summary>
+		/// <para>
+		/// Only public fields and properties will be written to the file.
+		/// If you don't wish to save certain fields/properties, add the [XmlIgnore] attribute to them.
+		/// Object type must have a parameterless constructor.
+		/// </para>
 		public static void Save<T>(string filePath, params T[] objectsToSave)
 		{
 			TextWriter? writer = null;
