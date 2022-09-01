@@ -6,12 +6,12 @@ namespace DataManagement
 	{
 		/// <summary>
 		/// Saves the given object instance to an XML file.
-		/// </summary>
 		/// <para>
 		/// Only public fields and properties will be written to the file.
 		/// If you don't wish to save certain fields/properties, add the [XmlIgnore] attribute to them.
 		/// Object type must have a parameterless constructor.
 		/// </para>
+		/// </summary>
 		/// <typeparam name="T">The type of object to save.</typeparam>
 		/// <param name="filePath">The file path to save the object to.</param>
 		/// <param name="objectToSave">The object instance to save.</param>
@@ -40,12 +40,14 @@ namespace DataManagement
 		}
 		/// <summary>
 		/// Saves the given array of object instances to an XML file.
-		/// </summary>
 		/// <para>
 		/// Only public fields and properties will be written to the file.
 		/// If you don't wish to save certain fields/properties, add the [XmlIgnore] attribute to them.
+		/// </para>
+		/// <para>
 		/// Object type must have a parameterless constructor.
 		/// </para>
+		/// </summary>
 		public static void Save<T>(string filePath, params T[] objectsToSave)
 		{
 			TextWriter? writer = null;
@@ -97,10 +99,10 @@ namespace DataManagement
 		}
 		/// <summary>
 		/// Loads multiple object instances from an XML file.
-		/// </summary>
 		/// <para>
 		/// Object type must have a parameterless constructor.
 		/// </para>
+		/// </summary>
 		/// <typeparam name="T">The type of object to load.</typeparam>
 		/// <param name="filePath">The file path to load the object instance from.</param>
 		/// <returns>Returns a new array of the objects read from the XML file.</returns>
