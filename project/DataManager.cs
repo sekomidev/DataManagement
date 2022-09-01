@@ -21,13 +21,30 @@ namespace DataManagement
 			TextWriter? writer = null;
 			try
 			{
-				writer = new StreamWriter(filePath, append);
+				writer = new StreamWriter(@filePath, append);
 				new XmlSerializer(typeof(T)).Serialize(writer, objectToSave);
 			}
 			catch(InvalidOperationException e)
 			{
 				Trace.TraceError("Only instances of public classes can be saved!");
 				throw e;
+			}
+			finally
+			{
+				if (writer is not null)
+				{
+					writer.Close();
+					writer.Dispose();
+				}
+			}
+		}
+		public static void Save<T>(string filePath, params T[] objectsToSave)
+		{
+			TextWriter? writer = null;
+			try
+			{
+				writer = new StreamWriter(@filePath, false);
+				new XmlSerializer(typeof(T[])).Serialize(writer, objectsToSave);
 			}
 			finally
 			{
@@ -53,13 +70,45 @@ namespace DataManagement
 			TextReader? reader = null;
 			try
 			{
-				reader = new StreamReader(filePath);
+				reader = new StreamReader(@filePath);
 				return (T)new XmlSerializer(typeof(T)).Deserialize(reader);
 			}
 			catch(FileNotFoundException)
 			{
 				Trace.TraceWarning($"File \"{filePath}\" not found; returning an empty object");
 				return new T();
+			}
+			finally
+			{
+				if (reader is not null)
+				{
+					reader.Close();
+					reader.Dispose();
+				}
+			}
+		}
+		/// <summary>
+		/// Loads multiple object instances from an XML file.
+		/// </summary>
+		/// <para>
+		/// Object type must have a parameterless constructor.
+		/// </para>
+		/// <typeparam name="T">The type of object to load.</typeparam>
+		/// <param name="filePath">The file path to load the object instance from.</param>
+		/// <returns>Returns a new array of the objects read from the XML file.</returns>
+		public static T[] LoadMultiple<T>(string filePath)
+			where T : new()
+		{
+			TextReader? reader = null;
+			try
+			{
+				reader = new StreamReader(@filePath);
+				return (T[])new XmlSerializer(typeof(T[])).Deserialize(reader);
+			}
+			catch (FileNotFoundException)
+			{
+				Trace.TraceWarning($"File \"{filePath}\" not found; returning an empty array");
+				return Array.Empty<T>();
 			}
 			finally
 			{
