@@ -1,11 +1,10 @@
 ﻿using System.Xml.Serialization;
-using System.Diagnostics;
 using log4net;
 namespace DataManagement
 {
 	public static class DataManager
 	{
-		private static readonly ILog log = LogManager.GetLogger("debugLog");
+		private static readonly ILog log = LogManager.GetLogger("DataManager");
 		/// <summary>
 		/// Saves the given object instance to an XML file.
 		/// <para>
