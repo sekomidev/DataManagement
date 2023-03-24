@@ -1,11 +1,10 @@
-﻿using System.Xml.Serialization;
+using System.Xml.Serialization;
 using System.Diagnostics;
-using log4net;
+
 namespace DataManagement
 {
 	public static class DataManager
 	{
-		private static readonly ILog log = LogManager.GetLogger("debugLog");
 		/// <summary>
 		/// Saves the given object instance to an XML file.
 		/// <para>
@@ -25,11 +24,6 @@ namespace DataManagement
 			{
 				writer = new StreamWriter(@filePath, append);
 				new XmlSerializer(typeof(T)).Serialize(writer, objectToSave);
-			}
-			catch(InvalidOperationException e)
-			{
-				log.Error("Only instances of public classes can be saved!");
-				throw e;
 			}
 			finally
 			{
@@ -85,11 +79,6 @@ namespace DataManagement
 				reader = new StreamReader(@filePath);
 				return (T)new XmlSerializer(typeof(T)).Deserialize(reader);
 			}
-			catch(FileNotFoundException)
-			{
-				log.Warn($"File \"{filePath}\" not found; returning an empty object");
-				return new T();
-			}
 			finally
 			{
 				if (reader is not null)
@@ -116,11 +105,6 @@ namespace DataManagement
 			{
 				reader = new StreamReader(@filePath);
 				return (T[])new XmlSerializer(typeof(T[])).Deserialize(reader);
-			}
-			catch (FileNotFoundException)
-			{
-				log.Warn($"File \"{filePath}\" not found; returning an empty array");
-				return Array.Empty<T>();
 			}
 			finally
 			{
