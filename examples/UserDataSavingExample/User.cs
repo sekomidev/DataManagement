@@ -13,7 +13,6 @@ namespace UserDataSavingExample
 		// this property will be saved
 		public string Name { get; set; }
 		// this property will also be saved
-		// (don't store real passwords in plain text, please)
 		public string Password { get; set; }
 		// this property will not be saved
 		[XmlIgnore]
@@ -26,6 +25,7 @@ namespace UserDataSavingExample
 			Password = String.Empty;
 			SessionId = Guid.NewGuid().ToString();
 		}
+		
 		public User(string name, string password)
 		{
 			Name = name;
