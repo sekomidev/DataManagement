@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-﻿using System.Xml.Serialization;
-=======
+using System.Xml.Serialization;
 using System.Xml.Serialization;
 using System.Diagnostics;
->>>>>>> main
 
 namespace DataManagement
 {
@@ -29,14 +26,11 @@ namespace DataManagement
 				writer = new StreamWriter(@filePath, append);
 				new XmlSerializer(typeof(T)).Serialize(writer, objectToSave);
 			}
-<<<<<<< HEAD
 			catch(InvalidOperationException e)
 			{
                 Console.WriteLine("Only instances of public classes can be saved!");
 				throw e;
 			}
-=======
->>>>>>> main
 			finally
 			{
 				if (writer is not null)
@@ -96,14 +90,11 @@ namespace DataManagement
 				reader = new StreamReader(@filePath);
 				return (T)new XmlSerializer(typeof(T)).Deserialize(reader);
 			}
-<<<<<<< HEAD
 			catch(FileNotFoundException)
 			{
                 Console.WriteLine($"File \"{filePath}\" not found; returning an empty object");
 				return new T();
 			}
-=======
->>>>>>> main
 			finally
 			{
 				if (reader is not null)
@@ -131,14 +122,11 @@ namespace DataManagement
 				reader = new StreamReader(@filePath);
 				return (T[])new XmlSerializer(typeof(T[])).Deserialize(reader);
 			}
-<<<<<<< HEAD
 			catch (FileNotFoundException)
 			{
 				Console.WriteLine($"File \"{filePath}\" not found; returning an empty array");
 				return Array.Empty<T>();
 			}
-=======
->>>>>>> main
 			finally
 			{
 				if (reader is not null)
