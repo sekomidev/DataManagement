@@ -27,7 +27,11 @@ namespace UserDataSavingExample
 			Password = String.Empty;
 			Id = Guid.NewGuid().ToString();
 		}
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> main
 		public User(string name, string password)
 		{
 			Name = name;
