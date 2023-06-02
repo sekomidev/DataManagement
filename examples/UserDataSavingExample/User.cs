@@ -12,25 +12,27 @@ namespace UserDataSavingExample
 
 		// this property will be saved
 		public string Name { get; set; }
+
 		// this property will also be saved
-		// (don't store real passwords in plain text, please)
 		public string Password { get; set; }
+
 		// this property will not be saved
 		[XmlIgnore]
-		public string SessionId { get; private set; }
+		public string Id { get; private set; }
 		
 		// a parameterless constructor is needed to save/load objects
 		public User()
 		{
 			Name = String.Empty;
 			Password = String.Empty;
-			SessionId = Guid.NewGuid().ToString();
+			Id = Guid.NewGuid().ToString();
 		}
+
 		public User(string name, string password)
 		{
 			Name = name;
 			Password = password;
-			SessionId = Guid.NewGuid().ToString();
+			Id = Guid.NewGuid().ToString();
 		}
 	}
 }
